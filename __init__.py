@@ -3,7 +3,7 @@ bl_info = {
     "author" : "Elhanan Flesch",
     "description" : "Generates linear stairs",
     "blender" : (3, 0, 0),
-    "version" : (0, 0, 1),
+    "version" : (0, 0, 2),
     "location" : "View3D > Add > Mesh",
     "warning" : "",
     "category" : "Add Mesh"

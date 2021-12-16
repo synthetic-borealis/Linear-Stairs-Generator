@@ -6,7 +6,7 @@ from os import path
 from zipfile import ZipFile
 
 OUTPUT_NAME = "LinearStairsGenerator"
-VERSION_STRING = "v0.0.1"
+VERSION_STRING = "v0.0.2"
 OUTPUT_FILE_NAME = "{0}_{1}.zip".format(OUTPUT_NAME, VERSION_STRING)
 
 def copytree_to_outdir(src):
