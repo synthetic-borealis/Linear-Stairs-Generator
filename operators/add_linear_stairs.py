@@ -68,7 +68,7 @@ class AddLinearStairs(Operator):
 
     def execute(self, context):
         # create mesh data
-        vertices, faces = linear_stairs.create(
+        vertices, faces, uvs = linear_stairs.create(
             self.count,
             self.width,
             self.depth,
@@ -85,6 +85,12 @@ class AddLinearStairs(Operator):
         bm.verts.ensure_lookup_table()
         for face in faces:
             bm.faces.new([bm.verts[i] for i in face])
+        
+        uv_layer = bm.loops.layers.uv.new()
+        loop = bm.loops.layers.uv[0]
+        for face, face_uvs in zip(bm.faces, uvs):
+            for loop, uv in zip(face.loops, face_uvs):
+                loop[uv_layer].uv = uv
 
         bm.to_mesh(mesh)
         bm.free()
