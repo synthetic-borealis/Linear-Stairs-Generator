@@ -1,5 +1,5 @@
 # Linear Stairs Generator
-A linear stair generation addon for Blender (>=3.0).
+A linear stair generation add-on for Blender (>=3.0).
 
 
 ## Installation:
@@ -10,5 +10,5 @@ A linear stair generation addon for Blender (>=3.0).
 Click on 'Add->Mesh->Add Linear Stairs'.
 
 ## Some Notes:
-* At the moment, the addon doesn't generate UVs.
-* This addon is still very much work-in-progress, so some things may not function properly.
+* At the moment, the add-on doesn't generate UVs.
+* This add-on is still very much work-in-progress so some things may not function properly.
