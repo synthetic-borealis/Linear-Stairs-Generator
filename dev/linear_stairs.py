@@ -13,20 +13,15 @@ def create(count=5, width=2.0, depth=0.3, height=0.15):
 
     f = 0
 
-    # for the front/top island
-    uvx_offset1 = width
-    uvy_offset1 = 0
+    uvy_offset1 = 0  # front/top island
 
-    # for the bottom/back island
-    uvx_offset2 = uvx_offset1 + (width * 2) + UV_GAP
+    # bottom/back island
+    uvx_offset1 = (width * 2) + UV_GAP
     uvy_offset2 = 0
 
-    # for the right island
-    uvx_offset3 = uvx_offset2 + width + UV_GAP
-    uvy_offset3 = 0
-
-    # for the left island
-    uvx_offset4 = uvx_offset3 + depth + UV_GAP
+    uvx_offset2 = uvx_offset1 + (width * 2) + UV_GAP  # right island
+    uvx_offset3 = uvx_offset2 + depth + UV_GAP  # left island
+    uvy_offset3 = 0  # both side island
 
     for i in range(count):
         # we need to generate the bottom front vertices for the first stair
@@ -50,32 +45,32 @@ def create(count=5, width=2.0, depth=0.3, height=0.15):
         vertices.append((width, (i + 1) * depth, (i + 1) * height))
 
         faces.append((f, f + 1, f + 5, f + 4))  # front
-        uvs.append(((-width + uvx_offset1, uvy_offset1), (width + uvx_offset1, uvy_offset1),
-                   (width + uvx_offset1, uvy_offset1 + height), (-width + uvx_offset1, uvy_offset1 + height)))
+        uvs.append(((0, uvy_offset1), (width * 2, uvy_offset1),
+                   (width * 2, uvy_offset1 + height), (0, uvy_offset1 + height)))
         uvy_offset1 += height
 
         faces.append((f + 7, f + 6, f + 4, f + 5))  # top
-        uvs.append(((width + uvx_offset1, uvy_offset1 + depth), (-width + uvx_offset1, uvy_offset1 + depth),
-                   (-width + uvx_offset1, uvy_offset1), (width + uvx_offset1, uvy_offset1)))
+        uvs.append(((width * 2, uvy_offset1 + depth), (0, uvy_offset1 + depth),
+                   (0, uvy_offset1), (width * 2, uvy_offset1)))
         uvy_offset1 += (depth + UV_GAP)
 
         faces.append((f + 2, f + 3, f + 1, f))  # bottom
-        uvs.append(((width + uvx_offset2, uvy_offset2 + depth), (-width + uvx_offset2, uvy_offset2 + depth),
-                   (-width + uvx_offset2, uvy_offset2), (width + uvx_offset2, uvy_offset2)))
+        uvs.append(((width * 2 + uvx_offset1, uvy_offset2 + depth), (uvx_offset1, uvy_offset2 + depth),
+                   (uvx_offset1, uvy_offset2), (width * 2 + uvx_offset1, uvy_offset2)))
         uvy_offset2 += depth
 
         faces.append((f + 3, f + 2, f + 6, f + 7))  # back
-        uvs.append(((-width + uvx_offset2, uvy_offset2), (width + uvx_offset2, uvy_offset2),
-                    (width + uvx_offset2, uvy_offset2 + height), (-width + uvx_offset2, uvy_offset2 + height)))
+        uvs.append(((uvx_offset1, uvy_offset2), (width * 2 + uvx_offset1, uvy_offset2),
+                    (width * 2 + uvx_offset1, uvy_offset2 + height), (uvx_offset1, uvy_offset2 + height)))
         uvy_offset2 += (height + UV_GAP)
 
         faces.append((f + 1, f + 3, f + 7, f + 5))  # right
-        uvs.append(((uvx_offset3, uvy_offset3), (uvx_offset3 + depth, uvy_offset3),
-                    (uvx_offset3 + depth, uvy_offset3 + height), (uvx_offset3, uvy_offset3 + height)))
+        uvs.append(((uvx_offset2, uvy_offset3), (uvx_offset2 + depth, uvy_offset3),
+                    (uvx_offset2 + depth, uvy_offset3 + height), (uvx_offset2, uvy_offset3 + height)))
 
         faces.append((f + 4, f + 6, f + 2, f))  # left
-        uvs.append(((uvx_offset4 + depth, uvy_offset3 + height), (uvx_offset4, uvy_offset3 + height),
-                    (uvx_offset4, uvy_offset3), (uvx_offset4 + depth, uvy_offset3)))
+        uvs.append(((uvx_offset3 + depth, uvy_offset3 + height), (uvx_offset3, uvy_offset3 + height),
+                    (uvx_offset3, uvy_offset3), (uvx_offset3 + depth, uvy_offset3)))
 
         uvy_offset3 += height + UV_GAP
 
