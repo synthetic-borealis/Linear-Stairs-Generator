@@ -101,7 +101,6 @@ bm.to_mesh(mesh)
 bm.free()
 mesh.update()
 
-print("Create new object with the mesh data")
 stairs_obj = bpy.data.objects.new("Stairs", mesh)
 
 
