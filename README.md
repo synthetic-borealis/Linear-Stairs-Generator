@@ -18,7 +18,7 @@
 Click on 'Add->Mesh->Add Linear Stairs'.
 
 ## Screenshots
-![Linear Stair Generation running in Blender 3.0](./screenshots/linear_stairs_02.png)
+![Linear Stair Generator running in Blender 3.0](./screenshots/linear_stairs_02.png)
 
 ## Important Notes:
 * This add-on is still very much work-in-progress so some things may not function properly.
