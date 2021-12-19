@@ -10,7 +10,7 @@ from bpy.props import (
 from bpy_extras import object_utils
 from bpy_extras.object_utils import AddObjectHelper
 
-from ..utils import linear_stairs
+from ..utils import linear_stairs_v1
 
 
 class AddLinearStairs(Operator):
@@ -68,7 +68,7 @@ class AddLinearStairs(Operator):
 
     def execute(self, context):
         # create mesh data
-        vertices, faces, uvs = linear_stairs.create(
+        vertices, faces, uvs = linear_stairs_v1.create(
             self.count,
             self.width,
             self.depth,
