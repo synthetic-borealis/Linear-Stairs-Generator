@@ -10,7 +10,8 @@ from bpy.props import (
 from bpy_extras import object_utils
 from bpy_extras.object_utils import AddObjectHelper
 
-from ..utils import linear_stairs
+from ..generators import linear_stairs_v1
+from ..generators import linear_stairs_v2
 
 
 class AddLinearStairs(Operator):
@@ -19,6 +20,17 @@ class AddLinearStairs(Operator):
     bl_idname = "mesh.primitive_linear_stairs_add"
     bl_label = "Add Linear Stairs"
     bl_options = {'REGISTER', 'UNDO'}
+
+    # Style
+    style_items = (
+        ('STYLE1', "Style 1", ""),
+        ('STYLE2', "Style 2", "")
+    )
+    style: EnumProperty(
+        name="Style",
+        items=style_items,
+        default='STYLE1'
+    )
 
     count: IntProperty(
         name="Stair Count",
@@ -68,12 +80,22 @@ class AddLinearStairs(Operator):
 
     def execute(self, context):
         # create mesh data
-        vertices, faces, uvs = linear_stairs.create(
-            self.count,
-            self.width,
-            self.depth,
-            self.height
-        )
+        vertices, faces, uvs = [], [], []
+
+        if self.style == 'STYLE1':
+            vertices, faces, uvs = linear_stairs_v1.create(
+                self.count,
+                self.width,
+                self.depth,
+                self.height
+            )
+        else:
+            vertices, faces, uvs = linear_stairs_v2.create(
+                self.count,
+                self.width,
+                self.depth,
+                self.height
+            )
 
         mesh = bpy.data.meshes.new("Stairs")
 
