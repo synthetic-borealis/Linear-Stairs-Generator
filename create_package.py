@@ -31,7 +31,7 @@ if (path.exists(OUTPUT_FILE_NAME)):
 os.mkdir(OUTPUT_NAME)
 
 copytree_to_outdir("operators")
-copytree_to_outdir("utils")
+copytree_to_outdir("generators")
 copy_to_outdir("__init__.py")
 
 with ZipFile(OUTPUT_FILE_NAME, "w") as out_file:
